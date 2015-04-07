@@ -25,8 +25,8 @@ public class MainActivity extends ActionBarActivity {
                     public void onClick(View v) {
                         // kerja
                         Toast.makeText(getApplicationContext(),"Done",Toast.LENGTH_LONG).show();
-                        Intent add_item = new Intent(MainActivity.this, AddItem.class);
-                        startActivity(add_item);
+                        //Intent add_item = new Intent(MainActivity.this, AddItem.class);
+                        //startActivity(add_item);
                     }
                 }
         );
@@ -50,6 +50,9 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent add_mem = new Intent(this, AddItem.class);
+            startActivity(add_mem);
+
             return true;
         }
 

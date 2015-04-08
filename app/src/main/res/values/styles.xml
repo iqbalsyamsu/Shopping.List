@@ -3,7 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ffff8580</item>
+        <item name="colorPrimary">#ff0d6eff</item>
+        <item name="android:textColorPrimary">#fffbf6ff</item>
     </style>
 
 </resources>

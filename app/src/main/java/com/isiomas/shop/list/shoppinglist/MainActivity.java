@@ -50,12 +50,16 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent add_mem = new Intent(this, AddItem.class);
-            startActivity(add_mem);
+            //Intent add_mem = new Intent(this, AddItem.class);
+            //startActivity(add_mem);
 
             return true;
         }
 
+        if (id == R.id.add_record) {
+            Intent add_mem = new Intent(this, AddItem.class);
+            startActivity(add_mem);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

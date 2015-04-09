@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
 
         String[] fromFiedNames = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION};
         int[] toViewID = new int[] { R.id.shopID, R.id.txtname, R.id.empty};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(), R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
 
 		//adapter.notifyDataSetChanged();
 		//listView.setAdapter(adapter);

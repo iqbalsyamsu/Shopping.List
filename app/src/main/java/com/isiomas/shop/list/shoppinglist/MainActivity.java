@@ -8,15 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 import android.widget.ListView;
 import android.database.Cursor;
-import android.support.v4.widget.SimpleCursorAdapter;
+
 
 public class MainActivity extends ActionBarActivity {
 	private SqlController dbcon;
 	private ListView listView;
-	
+    private SimpleCursorAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +29,15 @@ public class MainActivity extends ActionBarActivity {
 
 		dbcon = new SqlController(this);
 		dbcon.open();
-		//listView = (ListView) findViewById(R.id.list_view);
-		//listView.setEmptyView(findViewById(R.id.empty));
-		// Attach The Data From DataBase Into ListView Using Crusor Adapter
-		Cursor cursor = dbcon.fetch();
-		String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION,
-		
-		 };
-		int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
 
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-															  R.layout.activity_view_record, cursor, from, to);
+        Cursor cursor = dbcon.fetch();
+
+		listView = (ListView) findViewById(R.id.list_view);
+		listView.setEmptyView(findViewById(R.id.empty));
+
+        String[] fromFiedNames = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION};
+        int[] toViewID = new int[] { R.id.shopID, R.id.list_view, R.id.empty};
+        adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
 
 		adapter.notifyDataSetChanged();
 		listView.setAdapter(adapter);

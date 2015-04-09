@@ -20,7 +20,7 @@ public class AddItem extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTitle("Add Record");
+        setTitle(R.string.title_activity_add_item);
 
         setContentView(R.layout.additem);
 

@@ -9,16 +9,40 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+import android.widget.ListView;
+import android.database.Cursor;
+import android.support.v4.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ActionBarActivity {
-
+	private SqlController dbcon;
+	private ListView listView;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //sendiri
+		
+
+		dbcon = new SqlController(this);
+		dbcon.open();
+		//listView = (ListView) findViewById(R.id.list_view);
+		//listView.setEmptyView(findViewById(R.id.empty));
+		// Attach The Data From DataBase Into ListView Using Crusor Adapter
+		Cursor cursor = dbcon.fetch();
+		String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION,
+		
+		 };
+		int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
+
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+															  R.layout.activity_view_record, cursor, from, to);
+
+		adapter.notifyDataSetChanged();
+		listView.setAdapter(adapter);
+		
+		
         Button button = (Button)findViewById(R.id.ngad_button);
         button.setOnClickListener(
                 new Button.OnClickListener() {

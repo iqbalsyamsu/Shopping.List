@@ -17,16 +17,18 @@ import android.database.Cursor;
 public class MainActivity extends ActionBarActivity {
 	private SqlController dbcon;
 	private ListView listView;
-    //private SimpleCursorAdapter adapter;
+    private SimpleCursorAdapter adapter;
 
-    @Override
+   final String[] fromFiedNames = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION};
+	final int[] toViewID = new int[] { R.id.shopID, R.id.txtname, R.id.empty};
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //sendiri
 		
-
 		dbcon = new SqlController(this);
 		dbcon.open();
 
@@ -35,12 +37,10 @@ public class MainActivity extends ActionBarActivity {
 		listView = (ListView) findViewById(R.id.listView);
 		//listView.setEmptyView(findViewById(R.id.empty));
 
-        String[] fromFiedNames = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION};
-        int[] toViewID = new int[] { R.id.shopID, R.id.txtname, R.id.empty};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(), R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
+        adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
 
-		//adapter.notifyDataSetChanged();
-		//listView.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
+		listView.setAdapter(adapter);
 		
 		
         Button button = (Button)findViewById(R.id.ngad_button);

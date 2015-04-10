@@ -10,11 +10,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper {
     // DATABASE INFORMATION
     private static final String DB_NAME = "shopping.db";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
 
     // TABLE INFORMATTION
     public static final String TABLE_SHOPPING = "shopping";
-    public static final String SHOPPING_ID = "id";
+    public static final String SHOPPING_ID = "_id";
     public static final String SHOPPING_NAME = "name";
 	public static final String SHOPPING_DESCRIPTION= "description";
     public static final String SHOPPING_CATEGORY = "category";
@@ -35,7 +35,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_SHOPPING + " ("
                 + SHOPPING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + SHOPPING_NAME + " TEXT, "
-			 + SHOPPING_DESCRIPTION + " TEXT, "
+			    + SHOPPING_DESCRIPTION + " TEXT, "
                 + SHOPPING_CATEGORY + " INTEGER, "
                 + SHOPPING_DONE + " INTEGER, "
                 + SHOPPING_CREATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "

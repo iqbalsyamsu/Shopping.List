@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ConcurrentModificationException;
 
@@ -58,4 +59,13 @@ public class SqlController {
         database.delete(dbHelper.TABLE_SHOPPING, dbHelper.SHOPPING_ID + "=" + _id, null);
     }
 
+    public int countRows() {
+        String query = "SELECT * FROM " + dbHelper.TABLE_SHOPPING;
+        Cursor cursor = database.rawQuery(query, null );
+        int j = cursor.getCount();
+        Log.d("DeBe", query);
+        Log.d("DeBe",String.valueOf(j));
+        cursor.close();
+        return cursor.getCount();
+    }
 }

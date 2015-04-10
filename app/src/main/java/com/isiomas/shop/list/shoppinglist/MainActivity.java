@@ -4,6 +4,7 @@ package com.isiomas.shop.list.shoppinglist;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,11 +37,13 @@ public class MainActivity extends ActionBarActivity {
 
 		listView = (ListView) findViewById(R.id.listView);
 		//listView.setEmptyView(findViewById(R.id.empty));
+        int jml = 0;
+        jml = dbcon.countRows();
+        Log.d("Jumlah", "Inserting ..");
+        //adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
 
-        adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
-
-		adapter.notifyDataSetChanged();
-		listView.setAdapter(adapter);
+		//adapter.notifyDataSetChanged();
+		//listView.setAdapter(adapter);
 		
 		
         Button button = (Button)findViewById(R.id.ngad_button);

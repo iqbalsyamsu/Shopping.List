@@ -31,14 +31,15 @@ public class SqlController {
         dbHelper.close();
     }
 
-    public void insert(String name){
+    public void insert(String name, String description){
         ContentValues contentValue = new ContentValues();
         contentValue.put(dbHelper.SHOPPING_NAME,name);
+        contentValue.put(dbHelper.SHOPPING_DESCRIPTION, description);
         database.insert(dbHelper.TABLE_SHOPPING,null,contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { dbHelper.SHOPPING_ID, dbHelper.SHOPPING_NAME};
+        String[] columns = new String[] { dbHelper.SHOPPING_ID, dbHelper.SHOPPING_NAME, dbHelper.SHOPPING_DESCRIPTION};
         Cursor cursor = database.query(dbHelper.TABLE_SHOPPING, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

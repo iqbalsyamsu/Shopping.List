@@ -20,8 +20,8 @@ public class MainActivity extends ActionBarActivity {
 	private ListView listView;
     private SimpleCursorAdapter adapter;
 
-   final String[] fromFiedNames = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME, DataBaseHelper.SHOPPING_DESCRIPTION};
-	final int[] toViewID = new int[] { R.id.shopID, R.id.txtname, R.id.empty};
+    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION};
+	final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC};
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,14 @@ public class MainActivity extends ActionBarActivity {
 		//listView.setEmptyView(findViewById(R.id.empty));
         int jml = 0;
         jml = dbcon.countRows();
-        Log.d("Jumlah", "Inserting ..");
-        //adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, fromFiedNames, toViewID, 0);
+        Log.d("SLApp", "Maasuk ..");
+        Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
+
+        adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);
+
 
 		//adapter.notifyDataSetChanged();
-		//listView.setAdapter(adapter);
+		listView.setAdapter(adapter);
 		
 		
         Button button = (Button)findViewById(R.id.ngad_button);

@@ -4,28 +4,33 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<TextView
-		android:id="@+id/empty"
+    <TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:text="Kosong mas"/>
-
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="New Text"
+		android:text="ID"
 		android:id="@+id/shopID"
-		android:layout_alignParentBottom="true"
-		android:layout_alignRight="@+id/empty"
-		android:layout_alignEnd="@+id/empty"
-		android:layout_marginBottom="41dp"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textStyle="italic"
+        android:background="@color/Bek"
+        android:textColor="@color/Putih"/>
 
-	<TextView
+    <TextView
 		android:layout_height="wrap_content"
-		android:text="Text"
+		android:text="Item Name"
 		android:layout_width="wrap_content"
-		android:id="@+id/txtname"/>
+		android:id="@+id/shopNAME"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/shopDESC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:layout_below="@+id/shopNAME"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 

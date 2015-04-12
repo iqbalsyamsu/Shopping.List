@@ -40,9 +40,9 @@ public class AddItem extends Activity implements OnClickListener {
             case R.id.add_record:
 
                 final String name = subjectEditText.getText().toString();
-                //final String desc = descEditText.getText().toString();
+                final String desc = descEditText.getText().toString();
 
-                dbManager.insert(name);
+                dbManager.insert(name, desc);
 
                 Intent main = new Intent(AddItem.this, MainActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

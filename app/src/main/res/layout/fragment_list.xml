@@ -32,5 +32,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/shopCREATED"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/shopID"
+        android:layout_toStartOf="@+id/shopID"
+        android:textSize="10dp" />
+
 </RelativeLayout>
 

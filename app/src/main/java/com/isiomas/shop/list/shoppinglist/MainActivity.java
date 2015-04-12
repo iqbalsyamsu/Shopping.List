@@ -4,7 +4,7 @@ package com.isiomas.shop.list.shoppinglist;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +20,13 @@ public class MainActivity extends ActionBarActivity {
 	private ListView listView;
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION};
-	final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC};
+    //final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION};
+	//final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC};
 
-	@Override
+    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION, DataBaseHelper.SHOPPING_CREATED_AT};
+    final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC, R.id.shopCREATED};
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -33,19 +36,20 @@ public class MainActivity extends ActionBarActivity {
 		dbcon = new SqlController(this);
 		dbcon.open();
 
-        Cursor cursor = dbcon.fetch();
+        //Cursor cursor = dbcon.fetch();
+        Cursor cursor = dbcon.fetchAll();
 
 		listView = (ListView) findViewById(R.id.listView);
 		//listView.setEmptyView(findViewById(R.id.empty));
         int jml = 0;
         jml = dbcon.countRows();
-        Log.d("SLApp", "Maasuk ..");
+       // Log.d("SLApp", "Maasuk ..");
         Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
 
         adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);
 
 
-		//adapter.notifyDataSetChanged();
+		adapter.notifyDataSetChanged();
 		listView.setAdapter(adapter);
 		
 		

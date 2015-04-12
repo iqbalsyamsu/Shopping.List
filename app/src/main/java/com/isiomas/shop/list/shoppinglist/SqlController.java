@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+//import android.util.Log;
 
 import java.util.ConcurrentModificationException;
 
@@ -47,6 +47,14 @@ public class SqlController {
         return cursor;
     }
 
+    public Cursor fetchAll() {
+        Cursor cursor = database.query(dbHelper.TABLE_SHOPPING, null, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+    }
+
     public int update(long _id, String name) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.SHOPPING_NAME, name);
@@ -64,8 +72,8 @@ public class SqlController {
         String query = "SELECT * FROM " + dbHelper.TABLE_SHOPPING;
         Cursor cursor = database.rawQuery(query, null );
         int j = cursor.getCount();
-        Log.d("DeBe", query);
-        Log.d("DeBe",String.valueOf(j));
+        //Log.d("DeBe", query);
+        //Log.d("DeBe",String.valueOf(j));
         cursor.close();
         return cursor.getCount();
     }

@@ -2,7 +2,9 @@ package com.isiomas.shop.list.shoppinglist;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Iqbal Syamsu on 4/6/2015.
@@ -10,9 +12,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper {
     // DATABASE INFORMATION
     private static final String DB_NAME = "shopping.db";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 1;
 
-    // TABLE INFORMATTION
+    // TABLE INFORMATION
     public static final String TABLE_SHOPPING = "shopping";
     public static final String SHOPPING_ID = "_id";
     public static final String SHOPPING_NAME = "name";
@@ -22,6 +24,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String SHOPPING_CREATED_AT = "created_at";
     public static final String SHOPPING_UPDATED_AT = "updated_at";
     public static final String SHOPPING_FAVOURITE = "fav";
+
+    public static final String TABLE_CATEGORY = "category";
+    public static final String CATEGORY_ID = "_id";
+    public static final String CATEGORY_TITLE = "title";
+    public static final String CATEGORY_COLOR = "color";
+    public static final String CATEGORY_STATUS = "status";
+    public static final String CATEGORY_CREATED_AT = "created_at";
+    public static final String CATEGORY_UPDATED_AT = "updated_at";
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -34,14 +44,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_SHOPPING + " ("
                 + SHOPPING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + SHOPPING_NAME + " TEXT, "
+                + SHOPPING_NAME + " TEXT NOT NULL, "
 			    + SHOPPING_DESCRIPTION + " TEXT, "
-                + SHOPPING_CATEGORY + " INTEGER, "
-                + SHOPPING_DONE + " INTEGER, "
+                + SHOPPING_CATEGORY + " INTEGER DEFAULT 0, "
+                + SHOPPING_DONE + " INTEGER DEFAULT 0, "
                 + SHOPPING_CREATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
                 + SHOPPING_UPDATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
-                + SHOPPING_FAVOURITE + " INTEGER )");
-
+                + SHOPPING_FAVOURITE + " INTEGER DEFAULT 0)");
+        db.execSQL("CREATE TABLE " + TABLE_CATEGORY + " ("
+                + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + CATEGORY_TITLE + " TEXT NOT NULL, "
+                + CATEGORY_COLOR + " TEXT, "
+                + CATEGORY_STATUS + " INTEGER DEFAULT 0, "
+                + CATEGORY_CREATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                + CATEGORY_UPDATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP) ");
     }
 
     /**
@@ -52,7 +68,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS " + DB_NAME);
+        try {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOPPING);
+        } catch (SQLiteException exception) {
+            Log.i("error boss", "on the next line");
+            exception.printStackTrace();
+        }
         onCreate(db);
     }
 }

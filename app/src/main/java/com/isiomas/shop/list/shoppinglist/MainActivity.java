@@ -40,15 +40,15 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView idTextView = (TextView) view.findViewById(R.id.shopID);
-                TextView titleTextView = (TextView) view.findViewById(R.id.shopNAME);
+                TextView nameTextView = (TextView) view.findViewById(R.id.shopNAME);
                 TextView descTextView = (TextView) view.findViewById(R.id.shopDESC);
 
                 String id = idTextView.getText().toString();
-                String title = titleTextView.getText().toString();
+                String name = nameTextView.getText().toString();
                 String desc = descTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), EditItem.class);
-                modify_intent.putExtra("title", title);
+                modify_intent.putExtra("name", name);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
 

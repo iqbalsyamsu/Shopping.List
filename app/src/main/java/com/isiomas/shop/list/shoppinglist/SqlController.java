@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 //import android.util.Log;
 
 import java.util.ConcurrentModificationException;
@@ -55,13 +56,20 @@ public class SqlController {
         return cursor;
     }
 
-    public int update(long _id, String name) {
+    public int update(long _id, String name, String description) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.SHOPPING_NAME, name);
-        //contentValues.put(dbHelper.SHOPPING_CATEGORY);
-        int i = database.update(dbHelper.TABLE_SHOPPING, contentValues,
-                dbHelper.SHOPPING_ID + " = " + _id, null);
-        return i;
+        contentValues.put(dbHelper.SHOPPING_DESCRIPTION, description);
+        contentValues.put(dbHelper.SHOPPING_UPDATED_AT, "time('now')");
+        //int i = database.update(dbHelper.TABLE_SHOPPING, contentValues,
+        //        dbHelper.SHOPPING_ID + " = " + _id, null);
+       // return i;
+        String query = "UPDATE " + dbHelper.TABLE_SHOPPING + " SET " + dbHelper.SHOPPING_NAME + "=\"" + name + "\", "
+                + dbHelper.SHOPPING_DESCRIPTION + "=\"" + description + "\", "
+                + dbHelper.SHOPPING_UPDATED_AT + "=datetime('now') WHERE " + dbHelper.SHOPPING_ID + " = " + _id;
+        database.execSQL(query);
+        //Toast.makeText(context, query, Toast.LENGTH_LONG).show();
+        return 0;
     }
 
     public void delete(long _id) {

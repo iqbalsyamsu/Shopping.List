@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddItem extends Activity implements OnClickListener {
 
@@ -42,6 +43,10 @@ public class AddItem extends Activity implements OnClickListener {
                 final String name = subjectEditText.getText().toString();
                 final String desc = descEditText.getText().toString();
 
+                if (name.matches("")) {
+                    Toast.makeText(getApplicationContext(), "Please enter item name", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 dbManager.insert(name, desc);
 
                 Intent main = new Intent(AddItem.this, MainActivity.class)

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ListView;
 import android.database.Cursor;
@@ -17,7 +19,7 @@ import android.database.Cursor;
 
 public class MainActivity extends ActionBarActivity {
     private SqlController dbcon;
-	private ListView listView;
+	private ListView mainListView;
     private SimpleCursorAdapter adapter;
 
     //final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION};
@@ -31,28 +33,29 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //sendiri
-		
-		dbcon = new SqlController(this);
-		dbcon.open();
+        showMainList();
 
-        //Cursor cursor = dbcon.fetch();
-        Cursor cursor = dbcon.fetchAll();
+        // OnCLickListiner For List Items
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+                TextView idTextView = (TextView) view.findViewById(R.id.shopID);
+                TextView titleTextView = (TextView) view.findViewById(R.id.shopNAME);
+                TextView descTextView = (TextView) view.findViewById(R.id.shopDESC);
 
-		listView = (ListView) findViewById(R.id.listView);
-		//listView.setEmptyView(findViewById(R.id.empty));
-        int jml = 0;
-        jml = dbcon.countRows();
-       // Log.d("SLApp", "Maasuk ..");
-        Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
+                String id = idTextView.getText().toString();
+                String title = titleTextView.getText().toString();
+                String desc = descTextView.getText().toString();
 
-        adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);
+                Intent modify_intent = new Intent(getApplicationContext(), EditItem.class);
+                modify_intent.putExtra("title", title);
+                modify_intent.putExtra("desc", desc);
+                modify_intent.putExtra("id", id);
 
+                startActivity(modify_intent);
+            }
+        });
 
-		adapter.notifyDataSetChanged();
-		listView.setAdapter(adapter);
-		
-		
         Button button = (Button)findViewById(R.id.ngad_button);
         button.setOnClickListener(
                 new Button.OnClickListener() {
@@ -95,5 +98,30 @@ public class MainActivity extends ActionBarActivity {
             startActivity(add_mem);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMainList() {
+        //Toast.makeText(getApplicationContext(),"Poid",Toast.LENGTH_LONG).show();
+        //sendiri
+
+        dbcon = new SqlController(this);
+        dbcon.open();
+
+        //Cursor cursor = dbcon.fetch();
+        Cursor cursor = dbcon.fetchAll();
+
+        mainListView = (ListView) findViewById(R.id.listView);
+
+        int jml = 0;
+        jml = dbcon.countRows();
+        // Log.d("SLApp", "Maasuk ..");
+        //Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
+
+        adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);
+
+
+        adapter.notifyDataSetChanged();
+        mainListView.setAdapter(adapter);
+
     }
 }

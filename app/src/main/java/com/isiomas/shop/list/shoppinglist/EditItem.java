@@ -1,12 +1,12 @@
 package com.isiomas.shop.list.shoppinglist;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.Activity implements OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class EditItem extends ActionBarActivity {
+public class EditItem extends ActionBartActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

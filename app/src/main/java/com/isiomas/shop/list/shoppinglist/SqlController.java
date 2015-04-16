@@ -79,7 +79,7 @@ public class SqlController {
     public int countRows() {
         String query = "SELECT * FROM " + dbHelper.TABLE_SHOPPING;
         Cursor cursor = database.rawQuery(query, null );
-        int j = cursor.getCount();
+        int j = (int) cursor.getCount();
         //Log.d("DeBe", query);
         //Log.d("DeBe",String.valueOf(j));
         cursor.close();

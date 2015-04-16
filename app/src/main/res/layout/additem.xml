@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp" >
+    android:padding="20dp">
 
     <EditText
         android:id="@+id/subject_edittext"
@@ -11,7 +12,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
 		android:inputType="textCapWords"
-        android:hint="Item name" >
+        android:hint="Item name"
+        android:maxLength="48">
 
         <requestFocus />
     </EditText>
@@ -24,7 +26,9 @@
         android:hint="Description"
         android:inputType="textMultiLine|textCapSentences"
         android:minLines="2"
-        android:maxLines="4">
+        android:maxLines="4"
+        android:maxLength="25"
+        >
     </EditText>
 
     <Button

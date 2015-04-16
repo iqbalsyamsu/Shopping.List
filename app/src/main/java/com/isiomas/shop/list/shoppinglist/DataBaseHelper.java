@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+//import android.util.Log;
 
 /**
  * Created by Iqbal Syamsu on 4/6/2015.
@@ -20,7 +20,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String SHOPPING_NAME = "name";
 	public static final String SHOPPING_DESCRIPTION= "description";
     public static final String SHOPPING_CATEGORY = "category";
-    public static final String SHOPPING_DONE = "done";
+    public static final String SHOPPING_QUANTITY = "quantity";
+    public static final String SHOPPING_VALUE = "value";
+    public static final String SHOPPING_STATUS = "done";
     public static final String SHOPPING_CREATED_AT = "created_at";
     public static final String SHOPPING_UPDATED_AT = "updated_at";
     public static final String SHOPPING_FAVOURITE = "fav";
@@ -47,7 +49,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + SHOPPING_NAME + " TEXT NOT NULL, "
 			    + SHOPPING_DESCRIPTION + " TEXT, "
                 + SHOPPING_CATEGORY + " INTEGER DEFAULT 0, "
-                + SHOPPING_DONE + " INTEGER DEFAULT 0, "
+                + SHOPPING_QUANTITY + " INTEGER DEFAULT 0, "
+                + SHOPPING_VALUE + " INTEGER DEFAULT 0, "
+                + SHOPPING_STATUS + " INTEGER DEFAULT 0, "
                 + SHOPPING_CREATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
                 + SHOPPING_UPDATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
                 + SHOPPING_FAVOURITE + " INTEGER DEFAULT 0)");
@@ -71,8 +75,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         try {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOPPING);
         } catch (SQLiteException exception) {
-            Log.i("error boss", "on the next line");
-            exception.printStackTrace();
+            //Log.i("error boss", "on the next line");
+            //exception.printStackTrace();
         }
         onCreate(db);
     }

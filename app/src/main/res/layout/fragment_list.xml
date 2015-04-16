@@ -18,13 +18,14 @@
         android:layout_marginRight="5dp"
         android:singleLine="false"
         android:textAlignment="textEnd"
+        android:gravity="end"
         android:paddingTop="0dp"
         android:paddingLeft="1dp"
         android:paddingRight="1dp" />
 
     <TextView
 		android:layout_height="wrap_content"
-		android:text="Item Name"
+		android:text="@string/stringName"
 		android:layout_width="wrap_content"
 		android:id="@+id/shopNAME"
         android:textStyle="bold" />
@@ -33,7 +34,7 @@
         android:id="@+id/shopDESC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Description"
+        android:text="@string/stringDescription"
         android:layout_below="@+id/shopNAME"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -47,51 +48,53 @@
         android:layout_toLeftOf="@+id/shopID"
         android:layout_toStartOf="@+id/shopID"
         android:textSize="10dp"
-        android:layout_marginRight="3dp" />
+        android:layout_marginRight="3dp"
+        android:visibility="invisible"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="updated"
         android:id="@+id/shopUPDATED"
-        android:layout_below="@+id/shopDESC"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:visibility="invisible"
+        android:layout_below="@+id/shopCREATED"
+        android:layout_alignRight="@+id/shopCREATED"
+        android:layout_alignEnd="@+id/shopCREATED"
+        android:textSize="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/shopCATEGORY"
-        android:layout_below="@+id/shopUPDATED"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:visibility="invisible"
+        android:layout_below="@+id/shopID"
+        android:layout_toLeftOf="@+id/shopUPDATED"
+        android:layout_toStartOf="@+id/shopUPDATED"
+        android:textSize="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/shopDONE"
-        android:layout_below="@+id/shopCATEGORY"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/shopCATEGORY"
+        android:layout_toLeftOf="@+id/shopCATEGORY"
+        android:layout_toStartOf="@+id/shopCATEGORY"
+        android:textSize="8dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/shopFAV"
-        android:layout_below="@+id/shopDONE"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/shopDONE"
+        android:layout_toLeftOf="@+id/shopDONE"
+        android:layout_toStartOf="@+id/shopDONE"
+        android:textSize="8dp" />
 
-    EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 

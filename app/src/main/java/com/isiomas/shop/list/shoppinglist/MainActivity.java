@@ -18,7 +18,7 @@ import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
 
 public class MainActivity extends ActionBarActivity {
-    private SqlController dbcon;
+    private SqlController dbCon;
 	private ListView mainListView;
     private SimpleCursorAdapter adapter;
 
@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
         button.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        // kerja
+                        // it's by me
                         Toast.makeText(getApplicationContext(),"Done",Toast.LENGTH_LONG).show();
                         //Intent add_item = new Intent(MainActivity.this, AddItem.class);
                         //startActivity(add_item);
@@ -104,17 +104,17 @@ public class MainActivity extends ActionBarActivity {
         //Toast.makeText(getApplicationContext(),"Poid",Toast.LENGTH_LONG).show();
         //sendiri
 
-        dbcon = new SqlController(this);
-        dbcon.open();
+        dbCon = new SqlController(this);
+        dbCon.open();
 
-        //Cursor cursor = dbcon.fetch();
-        Cursor cursor = dbcon.fetchAll();
+        //Cursor cursor = dbCon.fetch();
+        Cursor cursor = dbCon.fetchAll();
 
         mainListView = (ListView) findViewById(R.id.listView);
 
         int jml = 0;
-        jml = dbcon.countRows();
-        // Log.d("SLApp", "Maasuk ..");
+        jml = dbCon.countRows();
+        // Log.d("SLApp", "Masuk ..");
         Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
 
         adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);

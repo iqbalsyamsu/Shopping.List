@@ -5,4 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_add_item">Add Item</string>
     <string name="title_activity_edit_item">Edit Item</string>
+    <string name="stringName">Item name</string>
+    <string name="stringDescription">Description</string>
 </resources>

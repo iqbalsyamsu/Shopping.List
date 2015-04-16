@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class EditItem extends Activity implements View.OnClickListener {
     private EditText nameText;
-    private Button updateBtn, deleteBtn;
+    //private
     private EditText descText;
     private long _id;
     private SqlController dbController;
@@ -26,8 +26,9 @@ public class EditItem extends Activity implements View.OnClickListener {
         dbController.open();
 
         nameText=(EditText) findViewById(R.id.name_edittext);
-        descText=(EditText) findViewById(R.id.description_edittext);
-        
+        descText=(EditText) findViewById(R.id.descriptionEditText);
+
+        Button updateBtn, deleteBtn;
         updateBtn = (Button) findViewById(R.id.btn_update);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
 

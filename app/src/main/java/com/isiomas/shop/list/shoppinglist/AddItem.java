@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class AddItem extends Activity implements OnClickListener {
 
-    private Button addTodoBtn;
+
     private EditText subjectEditText;
     private EditText descEditText;
 
@@ -25,9 +25,10 @@ public class AddItem extends Activity implements OnClickListener {
 
         setContentView(R.layout.additem);
 
-        subjectEditText = (EditText) findViewById(R.id.subject_edittext);
-        descEditText = (EditText) findViewById(R.id.description_edittext);
+        subjectEditText = (EditText) findViewById(R.id.nameEditText);
+        descEditText = (EditText) findViewById(R.id.descriptionEditText);
 
+        Button addTodoBtn;
         addTodoBtn = (Button) findViewById(R.id.add_record);
 
         dbManager = new SqlController(this);

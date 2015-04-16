@@ -6,27 +6,27 @@
     android:padding="20dp" >
 
     <EditText
-        android:id="@+id/subject_edittext"
+        android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
 		android:inputType="textCapWords"
-        android:hint="Item name"
-        android:maxLength="48">
+        android:hint="@string/stringName"
+        android:maxLength="@integer/maxLengthName">
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/description_edittext"
+        android:id="@+id/descriptionEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Description"
+        android:hint="@string/stringDescription"
         android:inputType="textMultiLine|textCapSentences"
         android:minLines="2"
         android:maxLines="4"
-        android:maxLength="200">
+        android:maxLength="@integer/maxLengthDescription">
     </EditText>
 
     <Button

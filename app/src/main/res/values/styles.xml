@@ -8,4 +8,6 @@
         <item name="android:actionMenuTextColor">#f66</item>
     </style>
 
+    <integer name="maxLengthName">62</integer>
+    <integer name="maxLengthDescription">200</integer>
 </resources>

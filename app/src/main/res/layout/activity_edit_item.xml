@@ -5,7 +5,7 @@
     android:padding="10dp" >
 
     <EditText
-        android:id="@+id/name_edittext"
+        android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,6 +27,37 @@
         android:maxLines="4"
         android:maxLength="@integer/maxLengthDescription">
     </EditText>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantityEditText"
+            android:layout_gravity="start"
+            android:layout_weight="0.2"
+            android:inputType="numberDecimal"
+            android:hint="@string/stringQuantityShort"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/valueEditText"
+            android:layout_gravity="right"
+            android:layout_weight="0.8"
+            android:inputType="number"
+            android:gravity="right|end"
+            android:hint="@string/stringValue"
+            />
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

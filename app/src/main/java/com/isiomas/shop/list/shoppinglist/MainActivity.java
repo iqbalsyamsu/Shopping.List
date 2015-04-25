@@ -25,8 +25,8 @@ public class MainActivity extends ActionBarActivity {
     //final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION};
 	//final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC};
 
-    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION, DataBaseHelper.SHOPPING_CREATED_AT, DataBaseHelper.SHOPPING_UPDATED_AT, DataBaseHelper.SHOPPING_CATEGORY, DataBaseHelper.SHOPPING_FAVOURITE, DataBaseHelper.SHOPPING_STATUS};
-    final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC, R.id.shopCREATED, R.id.shopUPDATED, R.id.shopCATEGORY, R.id.shopFAV, R.id.shopDONE};
+    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION, DataBaseHelper.SHOPPING_QUANTITY, DataBaseHelper.SHOPPING_VALUE, DataBaseHelper.SHOPPING_CREATED_AT, DataBaseHelper.SHOPPING_UPDATED_AT, DataBaseHelper.SHOPPING_CATEGORY, DataBaseHelper.SHOPPING_FAVOURITE, DataBaseHelper.SHOPPING_STATUS};
+    final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC, R.id.shopQTY, R.id.shopVAL, R.id.shopCREATED, R.id.shopUPDATED, R.id.shopCATEGORY, R.id.shopFAV, R.id.shopDONE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +42,21 @@ public class MainActivity extends ActionBarActivity {
                 TextView idTextView = (TextView) view.findViewById(R.id.shopID);
                 TextView nameTextView = (TextView) view.findViewById(R.id.shopNAME);
                 TextView descTextView = (TextView) view.findViewById(R.id.shopDESC);
+                TextView qtyTextView = (TextView) view.findViewById(R.id.shopQTY);
+                TextView valTextView = (TextView) view.findViewById(R.id.shopVAL);
 
                 String id = idTextView.getText().toString();
                 String name = nameTextView.getText().toString();
                 String desc = descTextView.getText().toString();
+                String qty = qtyTextView.getText().toString();
+                String val = valTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), EditItem.class);
                 modify_intent.putExtra("name", name);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
+                modify_intent.putExtra("qty", qty);
+                modify_intent.putExtra("val", val);
 
                 startActivity(modify_intent);
             }
@@ -115,10 +121,10 @@ public class MainActivity extends ActionBarActivity {
         int jml = 0;
         jml = dbCon.countRows();
         // Log.d("SLApp", "Masuk ..");
-        Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
 
         adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);
-
+        //adapter.setViewBinder();
 
         adapter.notifyDataSetChanged();
         mainListView.setAdapter(adapter);

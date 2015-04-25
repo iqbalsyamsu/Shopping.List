@@ -11,9 +11,8 @@ import android.widget.Toast;
 
 
 public class EditItem extends Activity implements View.OnClickListener {
-    private EditText nameText;
-    //private
-    private EditText descText;
+
+    private EditText nameText, descText, qtyText, valText;
     private long _id;
     private SqlController dbController;
 
@@ -25,8 +24,10 @@ public class EditItem extends Activity implements View.OnClickListener {
         dbController = new SqlController(this);
         dbController.open();
 
-        nameText=(EditText) findViewById(R.id.name_edittext);
-        descText=(EditText) findViewById(R.id.descriptionEditText);
+        nameText= (EditText) findViewById(R.id.nameEditText);
+        descText= (EditText) findViewById(R.id.descriptionEditText);
+        qtyText = (EditText) findViewById(R.id.quantityEditText);
+        valText = (EditText) findViewById(R.id.valueEditText);
 
         Button updateBtn, deleteBtn;
         updateBtn = (Button) findViewById(R.id.btn_update);
@@ -37,11 +38,15 @@ public class EditItem extends Activity implements View.OnClickListener {
         String id = intent.getStringExtra("id");
         String name = intent.getStringExtra("name");
         String desc = intent.getStringExtra("desc");
+        String qty = intent.getStringExtra("qty");
+        String val = intent.getStringExtra("val");
 
         _id = Long.parseLong(id);
 
         nameText.setText(name);
         descText.setText(desc);
+        qtyText.setText(qty);
+        valText.setText(val);
 
         updateBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
@@ -52,14 +57,18 @@ public class EditItem extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_update:
-                String name = nameText.getText().toString();
-                String desc = descText.getText().toString();
+                String name = nameText.getText().toString().replace(" ", "");   //http://stackoverflow.com/questions/5960706/removing-space-from-edit-text-string
+                String desc = descText.getText().toString().replace(" ", "");
+                String qty = qtyText.getText().toString();
+                String val = valText.getText().toString();
+                //Integer qty = Integer.parseInt(qtyText.getText().toString());
+                //Integer val = Integer.parseInt( valText.getText().toString() );
 
                 if (name.matches("")) {
                     Toast.makeText(getApplicationContext(), "Please enter item name", Toast.LENGTH_LONG).show();
                     return;
                 }
-                dbController.update(_id, name, desc);
+                dbController.update(_id, name, desc, qty, val);
                 this.returnHome();
                 break;
 

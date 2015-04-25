@@ -32,10 +32,12 @@ public class SqlController {
         dbHelper.close();
     }
 
-    public void insert(String name, String description){
+    public void insert(String name, String description, String qty, String theValue){
         ContentValues contentValue = new ContentValues();
         contentValue.put(dbHelper.SHOPPING_NAME,name);
         contentValue.put(dbHelper.SHOPPING_DESCRIPTION, description);
+        contentValue.put(dbHelper.SHOPPING_QUANTITY, qty);
+        contentValue.put(dbHelper.SHOPPING_VALUE,theValue);
         database.insert(dbHelper.TABLE_SHOPPING,null,contentValue);
     }
 
@@ -56,7 +58,7 @@ public class SqlController {
         return cursor;
     }
 
-    public int update(long _id, String name, String description) {
+    public int update(long _id, String name, String description, String qty, String theVal) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.SHOPPING_NAME, name);
         contentValues.put(dbHelper.SHOPPING_DESCRIPTION, description);
@@ -66,6 +68,8 @@ public class SqlController {
        // return i;
         String query = "UPDATE " + dbHelper.TABLE_SHOPPING + " SET " + dbHelper.SHOPPING_NAME + "=\"" + name + "\", "
                 + dbHelper.SHOPPING_DESCRIPTION + "=\"" + description + "\", "
+                + dbHelper.SHOPPING_QUANTITY + "=\"" + qty + "\", "
+                + dbHelper.SHOPPING_VALUE + "=\"" + theVal + "\", "
                 + dbHelper.SHOPPING_UPDATED_AT + "=datetime('now') WHERE " + dbHelper.SHOPPING_ID + " = " + _id;
         database.execSQL(query);
         //Toast.makeText(context, query, Toast.LENGTH_LONG).show();

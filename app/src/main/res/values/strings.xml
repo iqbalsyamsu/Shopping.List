@@ -7,4 +7,7 @@
     <string name="title_activity_edit_item">Edit Item</string>
     <string name="stringName">Item name</string>
     <string name="stringDescription">Description</string>
+    <string name="stringQuantity">Quantity</string>
+    <string name="stringQuantityShort">Qty.</string>
+    <string name="stringValue">Value</string>
 </resources>

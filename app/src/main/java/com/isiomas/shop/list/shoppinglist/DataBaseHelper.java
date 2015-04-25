@@ -30,6 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_CATEGORY = "category";
     public static final String CATEGORY_ID = "_id";
     public static final String CATEGORY_TITLE = "title";
+    public static final String CATEGORY_UNIT = "unit";
     public static final String CATEGORY_COLOR = "color";
     public static final String CATEGORY_STATUS = "status";
     public static final String CATEGORY_CREATED_AT = "created_at";
@@ -58,6 +59,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_CATEGORY + " ("
                 + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + CATEGORY_TITLE + " TEXT NOT NULL, "
+                + CATEGORY_UNIT + " TEXT, "
                 + CATEGORY_COLOR + " TEXT, "
                 + CATEGORY_STATUS + " INTEGER DEFAULT 0, "
                 + CATEGORY_CREATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "

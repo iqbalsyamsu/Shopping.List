@@ -41,7 +41,7 @@
             android:id="@+id/quantityEditText"
             android:layout_gravity="start"
             android:layout_weight="0.2"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="5"
             android:hint="@string/stringQuantityShort"
             />
@@ -52,7 +52,7 @@
             android:id="@+id/valueEditText"
             android:layout_gravity="right"
             android:layout_weight="0.8"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:gravity="right|end"
             android:maxLength="12"
             android:hint="@string/stringValue"

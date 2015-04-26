@@ -127,6 +127,7 @@ public class MainActivity extends ActionBarActivity {
         mainListView = (ListView) findViewById(R.id.listView);
 
         decFormat.applyPattern("#,###");
+
         DecimalFormatSymbols customDF = new DecimalFormatSymbols(Locale.getDefault());
         customDF.setDecimalSeparator(',');
         customDF.setGroupingSeparator('.');

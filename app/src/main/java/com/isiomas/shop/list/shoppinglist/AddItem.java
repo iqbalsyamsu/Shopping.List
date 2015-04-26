@@ -48,8 +48,8 @@ public class AddItem extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.add_record:
 
-                final String name = nameAddText.getText().toString().replace(" ", "");  //http://stackoverflow.com/questions/5960706/removing-space-from-edit-text-string
-                final String desc = descAddText.getText().toString().replace(" ", "");
+                final String name = nameAddText.getText().toString().trim();
+                final String desc = descAddText.getText().toString().trim();
                 final String qty = qtyAddText.getText().toString();
                 final String val = valAddText.getText().toString();
                 //final Integer qty = Integer.parseInt(qtyAddText.getText().toString());

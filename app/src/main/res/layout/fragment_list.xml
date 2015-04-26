@@ -22,7 +22,7 @@
         android:paddingTop="0dp"
         android:paddingLeft="1dp"
         android:paddingRight="1dp"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
     <TextView
 		android:layout_height="wrap_content"
@@ -50,14 +50,14 @@
         android:layout_toStartOf="@+id/shopID"
         android:textSize="10dp"
         android:layout_marginRight="3dp"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="updated"
         android:id="@+id/shopUPDATED"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_below="@+id/shopCREATED"
         android:layout_alignRight="@+id/shopCREATED"
         android:layout_alignEnd="@+id/shopCREATED"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/shopCATEGORY"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_below="@+id/shopID"
         android:layout_toLeftOf="@+id/shopUPDATED"
         android:layout_toStartOf="@+id/shopUPDATED"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/shopDONE"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_alignTop="@+id/shopCATEGORY"
         android:layout_toLeftOf="@+id/shopCATEGORY"
         android:layout_toStartOf="@+id/shopCATEGORY"
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/shopFAV"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_alignTop="@+id/shopDONE"
         android:layout_toLeftOf="@+id/shopDONE"
         android:layout_toStartOf="@+id/shopDONE"
@@ -99,14 +99,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/shopQTY"
         android:layout_below="@id/shopDESC"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/shopVAL"
         android:layout_below="@id/shopQTY"/>
 
@@ -114,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-        android:id="@+id/subTotal"
+        android:id="@+id/shopSUBTOT"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

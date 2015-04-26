@@ -17,16 +17,24 @@ import android.widget.ListView;
 import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class MainActivity extends ActionBarActivity {
     private SqlController dbCon;
 	private ListView mainListView;
     private SimpleCursorAdapter adapter;
 
+    NumberFormat numFormat = NumberFormat.getInstance();
+    DecimalFormat decFormat = (DecimalFormat) numFormat;
+
     //final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION};
 	//final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC};
 
-    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION, DataBaseHelper.SHOPPING_QUANTITY, DataBaseHelper.SHOPPING_VALUE, DataBaseHelper.SHOPPING_CREATED_AT, DataBaseHelper.SHOPPING_UPDATED_AT, DataBaseHelper.SHOPPING_CATEGORY, DataBaseHelper.SHOPPING_FAVOURITE, DataBaseHelper.SHOPPING_STATUS};
-    final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC, R.id.shopQTY, R.id.shopVAL, R.id.shopCREATED, R.id.shopUPDATED, R.id.shopCATEGORY, R.id.shopFAV, R.id.shopDONE};
+    final String[] from = new String[] { DataBaseHelper.SHOPPING_ID, DataBaseHelper.SHOPPING_NAME,DataBaseHelper.SHOPPING_DESCRIPTION, DataBaseHelper.SHOPPING_QUANTITY, DataBaseHelper.SHOPPING_VALUE, DataBaseHelper.SHOPPING_SUBTOTAL, DataBaseHelper.SHOPPING_CREATED_AT, DataBaseHelper.SHOPPING_UPDATED_AT, DataBaseHelper.SHOPPING_CATEGORY, DataBaseHelper.SHOPPING_FAVOURITE, DataBaseHelper.SHOPPING_STATUS};
+    final int[] to = new int[] { R.id.shopID, R.id.shopNAME, R.id.shopDESC, R.id.shopQTY, R.id.shopVAL, R.id.shopSUBTOT, R.id.shopCREATED, R.id.shopUPDATED, R.id.shopCATEGORY, R.id.shopFAV, R.id.shopDONE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,13 +126,69 @@ public class MainActivity extends ActionBarActivity {
 
         mainListView = (ListView) findViewById(R.id.listView);
 
+        decFormat.applyPattern("#,###");
+        DecimalFormatSymbols customDF = new DecimalFormatSymbols(Locale.getDefault());
+        customDF.setDecimalSeparator(',');
+        customDF.setGroupingSeparator('.');
+        final DecimalFormat df = new DecimalFormat("#,###", customDF);
+
+        Long theTotal = 0L;
+        //decFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.getDefault()));
+
+
+        //DecimalFormatSymbols[] df = DecimalFormatSymbols.getAvailableLocales();
+       // Locale[] locs = Locale.getAvailableLocales();
+
+        //Long subtotal;
         int jml = 0;
         jml = dbCon.countRows();
         // Log.d("SLApp", "Masuk ..");
         //Toast.makeText(getApplicationContext(), String.valueOf(jml)+" entries found.",Toast.LENGTH_LONG).show();
 
+        theTotal = dbCon.sum();
+        //Toast.makeText(getApplicationContext(), String.valueOf(theTotal)+" in total.",Toast.LENGTH_LONG).show();
+        TextView sumTxt = (TextView) findViewById(R.id.summaryText);
+        sumTxt.setText(df.format(theTotal));
+
+
         adapter = new SimpleCursorAdapter(this, R.layout.fragment_list, cursor, from, to, 0);
-        //adapter.setViewBinder();
+        adapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {    //http://stackoverflow.com/questions/3609126/changing-values-from-cursor-using-simplecursoradapter
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
+                Long subTotal = 0L;
+                String q = cursor.getString(4);
+                Integer qt=1;
+                Long vl = 0L;
+
+                try {
+                    qt = Integer.parseInt(cursor.getString(4));
+                } catch (NumberFormatException e) {
+
+                }
+                try {
+                    vl = Long.parseLong(cursor.getString(5));
+                } catch (NumberFormatException e){
+
+                }
+                //Toast.makeText(getApplicationContext(), String.valueOf(qt), Toast.LENGTH_LONG).show();
+
+                if (columnIndex == 6) {
+                    String createDate = cursor.getString(columnIndex);
+                    TextView textView = (TextView) view;
+                    //textView.setText("Create date: " + q);
+                    //String aa = String.format("%", qt);
+                    //textView.setText(String.valueOf(qt*vl));
+                    //textView.setText(decFormat.format(qt*vl));
+                    subTotal = qt * vl;
+
+
+                    textView.setText(df.format(subTotal));
+                    return true;
+                }
+                return false;
+            }
+
+        });
 
         adapter.notifyDataSetChanged();
         mainListView.setAdapter(adapter);

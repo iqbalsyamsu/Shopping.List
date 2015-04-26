@@ -57,13 +57,10 @@ public class EditItem extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_update:
-                String name = nameText.getText().toString().replace(" ", "");   //http://stackoverflow.com/questions/5960706/removing-space-from-edit-text-string
-                String desc = descText.getText().toString().replace(" ", "");
+                String name = nameText.getText().toString().trim();
+                String desc = descText.getText().toString().trim();
                 String qty = qtyText.getText().toString();
                 String val = valText.getText().toString();
-                //Integer qty = Integer.parseInt(qtyText.getText().toString());
-                //Integer val = Integer.parseInt( valText.getText().toString() );
-
                 if (name.matches("")) {
                     Toast.makeText(getApplicationContext(), "Please enter item name", Toast.LENGTH_LONG).show();
                     return;

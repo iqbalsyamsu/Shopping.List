@@ -11,17 +11,32 @@
         android:text="Ngad"
         android:id="@+id/ngad_button"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
+        android:visibility="gone"
         />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/summaryText"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:singleLine="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bgborder" />
+
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:layout_alignTop="@+id/ngad_button"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentRight="false"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:scrollbarStyle="outsideInset"/>
+        android:layout_alignParentBottom="false"
+        android:scrollbarStyle="outsideInset"
+        android:layout_below="@id/summaryText"
+        android:layout_toEndOf="@id/listView" />
 
 </RelativeLayout>

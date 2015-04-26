@@ -22,6 +22,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String SHOPPING_CATEGORY = "category";
     public static final String SHOPPING_QUANTITY = "quantity";
     public static final String SHOPPING_VALUE = "value";
+    public static final String SHOPPING_SUBTOTAL = "subtotal";
     public static final String SHOPPING_STATUS = "done";
     public static final String SHOPPING_CREATED_AT = "created_at";
     public static final String SHOPPING_UPDATED_AT = "updated_at";
@@ -52,6 +53,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + SHOPPING_CATEGORY + " INTEGER DEFAULT 0, "
                 + SHOPPING_QUANTITY + " INTEGER DEFAULT 0, "
                 + SHOPPING_VALUE + " INTEGER DEFAULT 0, "
+                + SHOPPING_SUBTOTAL + " INTEGER DEFAULT 0, "
                 + SHOPPING_STATUS + " INTEGER DEFAULT 0, "
                 + SHOPPING_CREATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
                 + SHOPPING_UPDATED_AT + " DATETIME DEFAULT CURRENT_TIMESTAMP, "

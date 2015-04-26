@@ -80,6 +80,16 @@ public class SqlController {
         database.delete(dbHelper.TABLE_SHOPPING, dbHelper.SHOPPING_ID + "=" + _id, null);
     }
 
+    public long sum() {
+        String query = "SELECT SUM( IFNULL(NULLIF(quantity,''),1) * IFNULL(NULLIF(value,''),0) ) FROM " + dbHelper.TABLE_SHOPPING;
+        Cursor cursor = database.rawQuery(query, null );
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor.getLong(0);
+        //return 1L;
+    }
+
     public int countRows() {
         String query = "SELECT * FROM " + dbHelper.TABLE_SHOPPING;
         Cursor cursor = database.rawQuery(query, null );

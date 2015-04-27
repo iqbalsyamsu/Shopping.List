@@ -2,6 +2,8 @@ package com.isiomas.shop.list.shoppinglist;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 //import android.util.Log;
@@ -42,6 +44,10 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         showMainList();
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String strUserName = SP.getString("example_text", "NA");
+        Toast.makeText(this, strUserName,Toast.LENGTH_LONG).show();
 
         // OnCLickListiner For List Items
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,8 +107,8 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            //Intent add_mem = new Intent(this, AddItem.class);
-            //startActivity(add_mem);
+            Intent add_mem = new Intent(this, SettingsActivity.class);
+            startActivity(add_mem);
 
             return true;
         }

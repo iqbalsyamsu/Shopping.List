@@ -24,7 +24,11 @@
         <activity
             android:name=".EditItem"
             android:label="@string/title_activity_edit_item"
-			android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" >
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

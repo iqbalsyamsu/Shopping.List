@@ -37,6 +37,8 @@
         android:layout_alignParentBottom="false"
         android:scrollbarStyle="outsideInset"
         android:layout_below="@id/summaryText"
-        android:layout_toEndOf="@id/listView" />
+        android:layout_toEndOf="@id/listView"
+        android:layout_toRightOf="@id/listView"
+        android:background="#ffffff"/>
 
 </RelativeLayout>

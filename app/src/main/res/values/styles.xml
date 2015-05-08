@@ -6,6 +6,7 @@
         <item name="colorPrimary">#ff0d6eff</item>
         <item name="android:textColorPrimary">#fffbf6ff</item>
         <item name="android:actionMenuTextColor">#f66</item>
+
     </style>
 
     <integer name="maxLengthName">62</integer>

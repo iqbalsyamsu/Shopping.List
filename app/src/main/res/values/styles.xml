@@ -9,7 +9,7 @@
         <!--item name="android:background">#fff</item-->
     </style>
 
-    <style name="ThemeGue" parent=""></style>
+
 
     <integer name="maxLengthName">62</integer>
     <integer name="maxLengthDescription">200</integer>
